@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="郭政浩的《飞行汽车技术基础》课程作业二，汇天陆地航母 X3-F 全流程系统安全分析。">
+<title>汇天陆地航母 · 全流程系统安全分析｜郭政浩</title>
+<style>
+:root{color-scheme:light;--paper:#f9f8f4;--ink:#182727;--muted:#516462;--line:#d0d8d1;--green:#22584c;--pale:#eaf0e8;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:5rem}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.85 system-ui,"Microsoft YaHei",sans-serif}a{color:var(--green);text-underline-offset:.24em}a:hover{color:#142d28}a:focus-visible,summary:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid #367662;outline-offset:4px}img{display:block;width:100%}p{margin:.55rem 0 1rem}h1,h2,h3,p,li,td,th{overflow-wrap:anywhere}h1,h2{font-family:var(--serif);line-height:1.25}h1{font-size:clamp(2.55rem,6vw,5.1rem);margin:.45rem 0 1rem;letter-spacing:-.045em}h2{font-size:clamp(1.8rem,3.9vw,3rem);margin:.4rem 0 1.45rem}h3{font-size:1.25rem;line-height:1.45;margin:2.1rem 0 .65rem}small,.small,figcaption{font-size:.85rem;color:var(--muted)}sup{line-height:0;font-size:.72em}sup a{text-decoration:none}.wrap{width:min(1120px,calc(100% - 56px));margin-inline:auto}.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:.6rem 1.5rem;min-height:59px}.top a{text-decoration:none;font-weight:620;white-space:nowrap}.top nav{display:flex;gap:clamp(.8rem,2.6vw,2.2rem);font-size:.9rem}.masthead{display:grid;grid-template-columns:1.55fr 1fr;gap:2rem;align-items:end;padding-top:3.6rem;padding-bottom:2.35rem}.eyebrow{font-size:.83rem;letter-spacing:.14em;font-weight:700;color:var(--green);margin:0}.subtitle{font-size:clamp(1.04rem,2.1vw,1.4rem);margin:0;color:var(--muted)}.byline{border-left:1px solid var(--line);padding-left:1.4rem;margin:0 0 .3rem}.byline strong{display:block}.byline span{display:block;color:var(--muted);font-size:.9rem}.cover{margin:0}.cover img{aspect-ratio:2.88;object-fit:cover;object-position:center 91%;background:#dbe5e9}.cover figcaption{margin:.5rem 0 0}.layout{display:grid;grid-template-columns:168px minmax(0,1fr);gap:3rem;margin-top:3.3rem}.contents{position:sticky;top:5.6rem;align-self:start;border-left:1px solid var(--line);padding-left:1rem}.contents p{margin:0 0 .65rem;font-weight:700}.contents a{display:block;font-size:.88rem;margin:.35rem 0;text-decoration:none}.chapter{padding:0 0 3rem;margin:0 0 3rem;border-bottom:1px solid var(--line)}.chapter:last-child{margin-bottom:0}.lede{font-size:1.12rem}.callout{background:var(--pale);border-left:3px solid var(--green);padding:1.15rem 1.35rem;margin:1.4rem 0}.callout p:last-child{margin-bottom:0}.flow{list-style:none;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:1.05rem 0}.flow li{background:#f0f3ee;padding:.75rem;text-align:center;font-size:.9rem;font-weight:600}.scroll{overflow-x:auto;margin:.85rem 0 1.2rem}table{border-collapse:collapse;width:100%;min-width:615px;font-size:.9rem;line-height:1.65}th,td{padding:.7rem .75rem;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}thead th{background:var(--pale);color:#234039}tbody th{color:#234039;min-width:6rem}.formula{font:600 1.04rem/1.6 system-ui;background:#eef1eb;border:1px solid var(--line);padding:.75rem 1rem;margin:.8rem 0;font-variant-numeric:tabular-nums}.controls{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}.controls label{display:block;font-size:.9rem;font-weight:650}.controls input{display:block;width:100%;accent-color:var(--green);margin:.6rem 0}.results{display:flex;gap:1.1rem 2.2rem;flex-wrap:wrap;margin-top:.85rem}.results strong{display:block;color:var(--green);font-size:1.6rem;font-variant-numeric:tabular-nums}.timeline{padding-left:1.35rem}.timeline li,.refs li{margin:.55rem 0}.timeline time{font-weight:700;color:var(--green)}details{border:1px solid var(--line);margin:.9rem 0;padding:.75rem 1rem}summary{cursor:pointer;color:var(--green);font-weight:650}footer{padding:2rem 0 2.8rem;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:1rem}
+@media(max-width:840px){.layout{display:block;margin-top:2rem}.contents{position:static;display:flex;gap:.25rem 1rem;flex-wrap:wrap;border-left:0;border-block:1px solid var(--line);padding:.6rem 0;margin-bottom:2rem}.contents p{margin:0}.contents a{margin:0}.masthead{gap:1rem}.cover img{aspect-ratio:2.65}}
+@media(max-width:550px){html{scroll-padding-top:6rem}.wrap{width:calc(100% - 32px)}.top .wrap{align-items:flex-start;flex-direction:column;justify-content:center;padding:.4rem 0;gap:.1rem}.top nav{gap:1.1rem}.masthead{display:block;padding-top:2rem;padding-bottom:1.25rem}.byline{margin-top:1rem;padding-left:.8rem}.cover img{aspect-ratio:2.54;object-position:center bottom}.controls{grid-template-columns:1fr;gap:.45rem}.flow{grid-template-columns:repeat(2,1fr)}.flow li:last-child{grid-column:span 2}.chapter{padding-bottom:2.2rem;margin-bottom:2.2rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.top,.contents,footer a,input[type=range]{display:none}.wrap{width:100%}.layout{display:block}.chapter{margin-bottom:1.3rem;padding-bottom:1rem}.cover img{max-height:220px}.scroll{overflow:visible}table{min-width:0}tr,figure,.callout{break-inside:avoid}}
+</style>
+</head>
+<body id="top">
+<header class="top"><div class="wrap"><a href="#top">飞行汽车技术基础</a><nav aria-label="页面导航"><a href="#safety">作业二</a><a href="#references">参考资料</a></nav></div></header>
+<div class="wrap">
+<div class="masthead"><div><p class="eyebrow">课程作业二</p><h1>汇天「陆地航母」</h1><p class="subtitle">全流程系统安全分析</p></div><p class="byline"><strong>郭政浩　15230828</strong><span>2026年11月22日</span></p></div>
+<figure class="cover"><img src="assets/land-aircraft-carrier.jpg" alt="陆地航母的六轮地面母车与已出舱、旋翼折叠的飞行体"><figcaption>图 1　地面母车与折叠状态的飞行体。图片来源：<a href="https://cn.aridge.com/x3">汇天产品页</a>。</figcaption></figure>
+<div class="layout">
+<aside class="contents" aria-label="页面目录"><p>目录</p><a href="#safety">系统安全分析</a><a href="#verification">安全要求与验证</a><a href="#references">参考资料</a></aside>
+<main>
+<section class="chapter" id="safety">
+<h2>分析范围与方法</h2>
+<p class="lede">本次分析沿用作业一的选题，研究汇天 X3-F 飞行体及其配套母车，选取“受控起降场的短程、同点返回飞行”作为参考任务。<sup><a href="#r2">[2]</a></sup>分析范围从路运、出舱和展开，延伸到飞行、着陆、回收、车载充电及维护。重点是系统在交接和异常状态下如何避免把飞行体误判为可起飞。</p>
+<p>本文按功能危险分析（FHA）识别整机后果，通过系统理论过程分析（STPA）检查控制与反馈，用定性故障树追踪关键路径。严重性按该参考任务估计：灾难性对应可能导致多人死亡或航空器毁损，危险性对应可能造成重伤或大幅压缩安全余量。公开资料缺少详细架构和可靠性数据，因此采用定性优先级与拟议要求。<sup><a href="#r1">[1]</a> <a href="#r4">[4]</a></sup></p>
+<h3>功能危险分析</h3>
+<div class="scroll" role="region" aria-label="功能危险分析表" tabindex="0"><table><thead><tr><th scope="col">编号／阶段</th><th scope="col">功能失效与整机后果</th><th scope="col">严重性</th><th scope="col">分析重点</th></tr></thead><tbody>
+<tr><th scope="row">H1 出舱／展开</th><td>机臂未锁、车辆与飞行体分离未确认或状态反馈过时，系统仍允许旋翼解锁，可能击伤地面人员，或在离地后失去结构稳定。</td><td>灾难性（离地后）</td><td>分合与起飞许可联锁；失效即禁止。</td></tr>
+<tr><th scope="row">H2 起降／空中</th><td>推进力不足或分配失衡，造成姿态越界、失去受控着陆能力。</td><td>灾难性</td><td>剩余控制权限、推进供电与共因失效。</td></tr>
+<tr><th scope="row">H3 飞行／补能</th><td>电池热失控蔓延、热烟进入座舱或电网损失。车内补能时可蔓延到母车及周围。</td><td>空中可达灾难性</td><td>隔离、热传播、告警、逃生和场地消防。</td></tr>
+<tr><th scope="row">H4 航行／进近</th><td>定位质量恶化、风场突变或着陆区闯入，导致航迹偏离或与障碍物冲突。</td><td>危险性至灾难性</td><td>实际可达备降点、气象边界、空域与地面隔离。</td></tr>
+<tr><th scope="row">H5 回收／维护</th><td>旋翼未停稳即收纳，或维修后锁止、标定与软件配置错误，形成受伤或潜伏故障。</td><td>危险性；潜伏故障可升级</td><td>回收互锁、维护放行与飞行前自检。</td></tr>
+</tbody></table></div>
+<h3>用 STPA 检查起飞许可</h3>
+<p><strong>不可接受损失：</strong>乘员或地面人员伤亡、航空器或第三方财产严重受损。<strong>控制链：</strong>场地负责人监督地面净空和运行条件，操作者发送分离、起飞或取消请求；地面控制器管理运输与分合状态，飞控负责起飞许可和旋翼指令；锁止、分离、动力、电量与飞行状态通过传感器反馈。以下为用于分析的功能结构。</p>
+<div class="scroll" role="region" aria-label="STPA 不安全控制动作表" tabindex="0"><table><thead><tr><th scope="col">不安全控制动作</th><th scope="col">具体情境</th><th scope="col">拟议安全约束</th></tr></thead><tbody>
+<tr><th scope="row">不提供动作</th><td>定位质量已低于经验证的能力边界，飞控未发出降级提示，操作者继续依赖原自动模式。</td><td>退化告警、可用模式和接管权限应一致，转入经验证的降级流程。关联 H4。</td></tr>
+<tr><th scope="row">错误提供动作</th><td>机臂卡滞，位置开关却反馈到位，飞控允许起飞。</td><td>以足够独立的证据确认锁止；反馈矛盾、过期或缺失均禁止离地。关联 H1。</td></tr>
+<tr><th scope="row">时机或顺序错误</th><td>通信恢复后旧的起飞请求被重新执行，此时人员已进入隔离区。</td><td>重连使旧许可失效，更新场地与机体状态后由操作者重新确认。关联 H1／H4。</td></tr>
+<tr><th scope="row">动作保持过久</th><td>长时间地面等待后，系统仍保持原放行条件，此时风况或电量发生变化。</td><td>许可限时，并在离地前复核动态门槛；已起飞时进入飞行处置逻辑。关联 H2／H4。</td></tr>
+</tbody></table></div>
+<h3>未安全展开仍离地的故障树</h3>
+<div class="formula">顶事件 = 实际未安全展开 AND 起飞联锁未成功阻止离地</div>
+<p>左侧分支可由机械卡滞、锁销未啮合或机臂部分展开触发（OR）。右侧分支可由错误到位反馈、过时的分离完成消息、误用维护模式或共同故障削弱判定通道触发（OR）。例如“机械卡滞 + 锁止误报”可能满足顶事件的逻辑条件。若同一泥沙污染同时让锁销卡滞和反馈失真，两分支会相关，不能直接用独立事件概率相乘。</p>
+<p>验证应覆盖机械公差和传感器误差的组合，在台架重放“到位信号为真但锁销未啮合”的状态，再在软硬件联试中核实操作者界面、飞控解锁条件和事件记录的一致性。返航落地后使用不同联锁逻辑：先确认稳停与旋翼停止，再允许折叠和回收。</p>
+
+<h3 id="verification">安全要求、失效处置与验证证据</h3>
+<div class="scroll" role="region" aria-label="安全要求与验证追踪表" tabindex="0"><table><thead><tr><th scope="col">安全要求</th><th scope="col">拟议控制</th><th scope="col">验收证据</th></tr></thead><tbody>
+<tr><th scope="row">S1 联锁（H1、H5）</th><td>禁止未分离、未锁止或信息不确定时旋翼解锁。充电、收纳与起飞准备按互斥状态管理。</td><td>机械寿命与环境试验、锁位矛盾和重连场景故障注入；任何无效状态下均不产生启动指令。</td></tr>
+<tr><th scope="row">S2 可控着陆（H2）</th><td>审查电源、热管理、控制与布线的物理独立性。飞控在推进退化时按已验证能力执行优先着陆策略。</td><td>地面台架与硬件在环验证先行，逐步审定试飞。记录推力、姿态、可达区域、电量和温度，并对照型号适用标准判定。</td></tr>
+<tr><th scope="row">S3 电池安全（H3）</th><td>控制热传播与座舱暴露，制定地面充电异常的停车、断电、人员疏散和消防响应流程。</td><td>单体热事件传播、烟气路径、预警时间、断电后的剩余飞行能力与充电场消防演练。</td></tr>
+<tr><th scope="row">S4 运行边界（H4）</th><td>设定经验证的风况、能量与导航状态放行门槛；确认备降可用和隔离区清空。控制指令与配置更新保持完整、可追溯。</td><td>仿真与受控测试场覆盖定位退化、链路中断和场地闯入；人因试验检查模式识别、响应时限及告警。</td></tr>
+<tr><th scope="row">S5 持续适航（H1–H5）</th><td>跟踪锁止循环数、电池健康、结构损伤和配置版本，设置检查周期、维修放行与异常事件报告。</td><td>疲劳谱与路运振动试验、故障件溯源、维修后功能复检及运营记录抽查。</td></tr>
+</tbody></table></div>
+<details><summary>载人运行前应核实哪些证据？</summary><p>首先核实型号与单机适航状态、适用运行批准及限制，再核查具体场地、人员、空域与应急保障。正常工况测试之外，还应提交失效情况下的备降能力、电池隔离和锁止防误放行的证据。中国民航局已发布 X3-F 专用条件征求意见稿，实际要求以该型号最终适用的审定基础和运行限制为准。<sup><a href="#r3">[3]</a></sup></p></details>
+<div class="callout"><strong>作业二结论</strong><p>最需要优先验证的是起飞联锁、推进退化后的受控着陆和电池故障隔离。初期运行边界应由实测风况、载荷、电池健康、场地与备降能力共同确定。公开试飞资料有助于判断研制成熟度，型号级安全结论仍取决于可追溯的设计、符合性和运营验证证据。</p></div>
+</section>
+
+<section class="chapter" id="references"><h2>参考资料</h2>
+<ol class="refs">
+<li id="r1">《飞行汽车技术基础》课程讲义，第四章《飞行汽车的现状及展望》及第五章《飞行汽车产业分析及支撑技术》；<a href="https://lab.autozyx.com/fundamentals-of-flying-vehicle-technology/tesla-flying-roadster/">课程 Roadster 案例</a>。</li>
+<li id="r2">汇天。<a href="https://cn.aridge.com/x3">陆地航母产品介绍</a>。产品构型、分合、动力参数及图 1。</li>
+<li id="r3">中国民用航空局。<a href="https://www.caac.gov.cn/HDJL/YJZJ/202503/t20250318_226976.html">关于就 X3-F 型航空器专用条件征求意见的函</a>，2025 年 3 月。</li>
+<li id="r4">Nancy G. Leveson、John P. Thomas。<a href="https://psas.scripts.mit.edu/home/get_file1.php?name=STPA_Handbook.pdf">STPA Handbook</a>，2018。</li>
+</ol>
+</section>
+</main></div>
+<footer><span>郭政浩 · 15230828</span><a href="#top">返回顶部</a></footer>
+</div>
+</body>
+</html>
+
